@@ -19,8 +19,8 @@ import json
 #
 def inspectDisk(arg):
     global DEBUG
-    p = Path(arg)
-    if os.path.ismount(p):
+    p = Path(arg)   # read to path object to perform validation
+    if os.path.ismount(p):  # test if disk mount
         if DEBUG == '1':
             print("Valid mount point. PROCESSING...")
         formatOut(p)
@@ -35,19 +35,19 @@ def inspectDisk(arg):
 #
 def formatOut(p):
     global DEBUG
-    data = '{"files":['
-    bCount = 0
-    for root, dirs, files in os.walk(p):
+    data = '{"files":[' # begin JSON string, create "files" object
+    bCount = 0 # byte count object
+    for root, dirs, files in os.walk(p): # recursive scan of directory with standard collections
         for filename in files:
-            absFile = root + '/' + os.path.relpath(filename)
-            data += '{"%s": %d},' % (absFile, os.path.getsize(absFile))
-            bCount += os.path.getsize(absFile)
-    data = data[:-1]
-    data += ']}'
-    jsonOut = json.loads(data)
-    print(json.dumps(jsonOut, sort_keys=True, indent=2, separators=(",", ": ")))
+            absFile = root + '/' + os.path.relpath(filename) # full path is required to get size in bytes
+            data += '{"%s": %d},' % (absFile, os.path.getsize(absFile)) # add attribute to "files"
+            bCount += os.path.getsize(absFile) # add size of file to byte count
+    data = data[:-1] # remove comma after last attribute
+    data += ']}' # close the JSON object and file
+    jsonOut = json.loads(data) # convert JSON string to Python object
+    print(json.dumps(jsonOut, sort_keys=True, indent=2, separators=(",", ": "))) # read object here and pretty-print
     if DEBUG == '1':
         print('Bytes used: %d' % (bCount))
 
-DEBUG = sys.argv[2]
-inspectDisk(sys.argv[1])
+DEBUG = sys.argv[2] # debug parameter
+inspectDisk(sys.argv[1]) # entry
