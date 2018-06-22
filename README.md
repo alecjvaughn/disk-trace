@@ -7,7 +7,7 @@ This program will:
   - Return the total number of bytes in use
 
 To run this program:
-  - Clone the repository with the link:
+  - Clone the repository with the link: https://github.com/alecjvaughn/target-recruiting.git
   - If Python is not installed on the local machine then download the files here: https://www.python.org/downloads/ and run the installer
   - Open Command-Line for Windows or Terminal for Unix (Macintosh) and navigate to the cloned repository
   - Type "python3 getdiskusage.py [path]"
