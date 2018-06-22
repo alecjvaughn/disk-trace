@@ -18,6 +18,21 @@ To run this program:
     - the program will terminate if not a valid disk mount
     - debug mode will clarify whether or not the defined path is a disk mount and also print the disk usage
   
+Obstacles:
+  - This program took slightly more time than an average project of this size because it is written in an unfamiliar language, though I am much more confident writing code in Python because of this experience
+    - I dealt with this obstacle by dividing the program into manageable chucks and doing research on the libraries that would give me the required functionality and how to use them.
+    - Research was conducted on the python.org documentation site, Stack Overflow, and other google search results.
+  - The json library for Python was very difficult to use at first when trying to conform to the sample document
+    - List and dictionary structures where used initially to print the output with json.dump but it was not flexible enough
+    - The solution I found was to use a string as a buffer and read data into it while adding the necessary formatting
+    - It was necessary to deviate from the sample output because of the stringent requirement of the json library
+  - Recursively scanning the directory was challenging at first in conjunction with the json output, until using a string buffer
+    - The os.walk() method provided the recursive functionality necessary to scan the directory tree and a simple interface which reduced code significantly
+
 Known bugs:
   - The disk usage is inaccurate when tested over small data sets (i.e. < 1GB)
 
+Future:
+  - If choosing to continue development, I would:
+    - Seperate directories from files hierarchically
+    - Change absolute paths to relative paths
