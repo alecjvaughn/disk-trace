@@ -1,4 +1,4 @@
-# target-recruiting
+# disktrace
 This is the code for the case study #2, written in Python
 
 This program will:
