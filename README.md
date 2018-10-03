@@ -1,4 +1,4 @@
-# disktrace
+# disk-trace
 Written in Python
 
 This program will:
